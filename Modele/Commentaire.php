@@ -19,6 +19,18 @@ class Commentaire extends Modele {
     	//throw new exception('aucun commentiares pour le billet numero '.$idBillet);
   }
 
+  public function lesCommentaire() {
+    $sql = 'select * from T_COMMENTAIRE';
+
+     $commentaires = $this->executerRequete($sql);
+    
+    //var_dump($commentaires->rowCount()); die();
+    if ($commentaires->rowCount() != 0)
+      return $commentaires->fetchAll(PDO::FETCH_ASSOC);
+    else
+      return $commentaires = array();
+  }
+
   // Ajoute un commentaire dans la base
   public function ajouterCommentaire($auteur, $contenu, $idBillet) {
     $sql = 'insert into T_COMMENTAIRE(COM_DATE, COM_AUTEUR, COM_CONTENU, BIL_ID)'

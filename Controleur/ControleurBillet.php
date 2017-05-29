@@ -25,6 +25,12 @@ class ControleurBillet extends Controleur {
       'commentaires' => $commentaires));
   }
 
+  public function test() {
+
+   $lesCommentaire = $this->commentaire->lesCommentaire();
+   $this->genererVue(array('lesCommentaire' => $lesCommentaire));
+  }
+
   // Ajoute un commentaire sur un billet
   public function commenter() {
     $idBillet = $this->requete->getParametre("id");
